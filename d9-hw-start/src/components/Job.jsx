@@ -15,20 +15,32 @@ const Job = ({ data }) => {
     });
   };
 
+  const deleteFromFavorites = (jobData) => {
+    dispatch({
+      type: "DELETE_FROM_FAVORITIES",
+      payload: jobData,
+    });
+  };
+
   return (
     <Row className="mx-0 mt-3 p-3" style={{ border: "1px solid #00000033", borderRadius: 4 }}>
       <Col xs={3}>
         <Link to={`/${data.company_name}`}>{data.company_name}</Link>
       </Col>
-      <Col xs={9}>
+      <Col xs={7}>
         <a href={data.url} target="_blank" rel="noreferrer">
           {data.title}
         </a>
       </Col>
-      <Col>
+      <Col xs={2}>
         {!isJobInFavorites && (
           <Button className="d-flex align-items-center" onClick={() => addToFavorites(data)}>
             <span className="me-2">ADD TO FAV</span>
+          </Button>
+        )}
+        {isJobInFavorites && (
+          <Button variant="danger" onClick={() => deleteFromFavorites(data)}>
+            DELETE
           </Button>
         )}
       </Col>

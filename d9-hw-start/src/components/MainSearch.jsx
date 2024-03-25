@@ -31,15 +31,17 @@ const MainSearch = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="align-items-center">
         <Col xs={10} className="mx-auto my-3">
-          <h1 className="display-1">Remote Jobs Search</h1>
-          <Button>
-            <Link to={`/favorities`} className="text-light">
-              YOURFAV
-            </Link>
-          </Button>
+          <h1 className="display-1">Remote Jobs Search</h1>{" "}
         </Col>
+
+        <Col xs={2}>
+          <Link to={`/favorities`}>
+            <Button className="btn-warning text-black fw-bold">YOURFAV</Button>
+          </Link>
+        </Col>
+
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
             <Form.Control type="search" value={query} onChange={handleChange} placeholder="type and press Enter" />
