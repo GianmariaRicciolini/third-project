@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Job from "./Job";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateSearchResults } from "../redux/actions";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
   const [jobs, setJobs] = useState([]);
+  const dispatch = useDispatch();
 
   const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
@@ -15,6 +18,7 @@ const MainSearch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(updateSearchResults(query));
 
     try {
       const response = await fetch(baseEndpoint + query + "&limit=20");
